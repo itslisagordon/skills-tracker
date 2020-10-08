@@ -1,9 +1,7 @@
 package org.launchcode.skillstracker.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 //@RequestMapping("")
@@ -26,20 +24,20 @@ public class SkillsController {
     public String favLanguageForm() {
         return "<html>" +
                 "<body>" +
-                "<form action='postrequestlang' method='post'>" +
+                "<form action='formsubmission' method='post'>" +
                 "<p>Name:</p>" +
                 "<input type='text' name='name'><br>" +
-                "<p>My favorite language:</p><select name='language' id='language-select'>" +
+                "<p>My favorite language:</p><select name='language1' id='language1-select'>" +
                 "<option value='java'>Java</option>" +
                 "<option value='javascript'>JavaScript</option>" +
                 "<option value='python'>Python</option>" +
                 "</select><br>" +
-                "<p>My second favorite language:</p><select name='language' id='language-select'>" +
+                "<p>My second favorite language:</p><select name='language2' id='language2-select'>" +
                 "<option value='java'>Java</option>" +
                 "<option value='javascript'>JavaScript</option>" +
                 "<option value='python'>Python</option>" +
                 "</select><br>" +
-                "<p>My third favorite language:</p><select name='language' id='language-select'>" +
+                "<p>My third favorite language:</p><select name='language3' id='language3-select'>" +
                 "<option value='java'>Java</option>" +
                 "<option value='javascript'>JavaScript</option>" +
                 "<option value='python'>Python</option>" +
@@ -48,6 +46,17 @@ public class SkillsController {
                 "</form>" +
                 "</body>" +
                 "</html>";
+    }
+
+    @PostMapping("formsubmission")
+    @ResponseBody
+    public String helloWithQueryParam(@RequestParam String name, @RequestParam String language1, @RequestParam String language2, @RequestParam String language3) {
+        return "<h1>" + name + "</h1>" +
+                "<ol>" +
+                "<li>" + language1 + "</li>" +
+                "<li>" + language2 + "</li>" +
+                "<li>" + language3 + "</li>" +
+                "</ol>";
     }
 
 }
